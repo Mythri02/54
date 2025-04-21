@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/Mythri02/54.git'
+                git branch: 'main', url: 'https://github.com/Mythri02/54.git'
             }
         }
 
