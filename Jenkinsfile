@@ -4,25 +4,25 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/Mythri02/54.git'
+                git 'https://github.com/Mythri02/54.git'
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build'
+                bat 'docker build -t my-app-image .'
             }
         }
 
         stage('Run Containers') {
             steps {
-                sh 'docker-compose up -d'
+                bat 'docker-compose up -d'
             }
         }
 
         stage('Cleanup') {
             steps {
-                sh 'docker system prune -f -a --volumes'
+                echo 'Pipeline completed successfully.'
             }
         }
     }
