@@ -49,24 +49,14 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
-    steps {
-        echo 'Starting cleanup process...'
-        script {
-            try {
-                def stopOutput = bat(script: "docker stop demodocker-web-app", returnStdout: true).trim()
-                echo "Docker stop output: ${stopOutput}"
-
-                def rmOutput = bat(script: "docker rm demodocker-web-app", returnStdout: true).trim()
-                echo "Docker rm output: ${rmOutput}"
-
-                echo 'Cleanup completed successfully.'
-            } catch (err) {
-                echo "Cleanup failed: ${err}"
+       stage('Cleanup') {
+            steps {
+                echo 'Cleaning up...'
+                bat "docker stop ${CONTAINER_NAME} && docker rm ${CONTAINER_NAME}" // use 'sh' for Linux
             }
         }
     }
-}
+
 
 
     post {
