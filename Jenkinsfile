@@ -54,10 +54,10 @@ pipeline {
         echo 'Starting cleanup process...'
         script {
             try {
-                def stopOutput = bat(script: "docker stop %CONTAINER_NAME%", returnStdout: true).trim()
+                def stopOutput = bat(script: "docker stop demodocker-web-app", returnStdout: true).trim()
                 echo "Docker stop output: ${stopOutput}"
 
-                def rmOutput = bat(script: "docker rm %CONTAINER_NAME%", returnStdout: true).trim()
+                def rmOutput = bat(script: "docker rm demodocker-web-app", returnStdout: true).trim()
                 echo "Docker rm output: ${rmOutput}"
 
                 echo 'Cleanup completed successfully.'
